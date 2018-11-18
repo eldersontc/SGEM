@@ -1,3 +1,5 @@
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Conventions.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NHibernate;
+using SGEM.Models;
 
 namespace SGEM
 {
@@ -20,13 +24,28 @@ namespace SGEM
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //NHibernate
+            services.AddSingleton<ISessionFactory>((provider) => {
+                return Fluently.Configure()
+                .Database(FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2012
+                .ConnectionString(Configuration.GetConnectionString("DefaultConnection")).ShowSql())
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Base>().Conventions.Add(DefaultLazy.Never()))
+                .BuildSessionFactory();
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddJsonOptions(configureJson);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+        }
+
+        public void configureJson(MvcJsonOptions obj)
+        {
+            obj.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
