@@ -1,0 +1,110 @@
+<form class="form-horizontal" novalidate
+      [formGroup]="form">
+  <div class="form-row">
+    <div class="col-12">
+      <div class="form-group">
+        <label class="col-md-12 control-label" for="tituloId">Título</label>
+        <div class="col-md-12">
+          <input class="form-control"
+                 id="tituloId"
+                 formControlName="titulo"
+                 required />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-6">
+      <div class="form-group">
+        <label class="col-md-12 control-label" for="tipoId">Tipo</label>
+        <div class="col-md-12">
+          <select id="tipoId" class="custom-select" formControlName="tipoReporte">
+            <option *ngFor="let t of tipos" [ngValue]="t">{{t}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label class="col-md-12 control-label" for="flagId">Flag</label>
+        <div class="col-md-12">
+          <input class="form-control"
+                 id="flagId"
+                 type="number"
+                 formControlName="flag"
+                 required />
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="form-horizontal">
+  <div class="form-row">
+    <div class="col-12">
+      <div class="form-group">
+        <label class="col-md-12 control-label" for="parametroId">Parámetro</label>
+        <div class="col-md-12">
+          <div class="input-group">
+            <input class="form-control"
+                   id="parametroId"
+                   type="text"
+                   [(ngModel)]="parametro"/>
+            <div class="input-group-append">
+              <button class="btn btn-primary"
+                      type="button"
+                      (click)="addItem()"
+                      [disabled]="!parametro">
+                <fa name="plus-circle"></fa> Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-12">
+      <div class="col-md-12">
+        <table class="table table-bordered table-hover table-sm">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Parámetro</th>
+              <th scope="col">Valor</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of items">
+              <td>{{i.nombre}}</td>
+              <td>
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="i.valor" />
+              </td>
+              <td class="text-center">
+                <button type="button"
+                        class="btn btn-primary"
+                        (click)="deleteItem(i)">
+                  <fa name="trash"></fa>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <button class="btn btn-primary ml-3"
+          type="button"
+          (click)="save()"
+          [disabled]="!form.valid || items.length == 0">
+    <fa name="save"></fa> Guardar
+  </button>
+  <button class="btn btn-outline-secondary ml-2"
+          type="button"
+          [routerLink]='["/reportes"]'>
+    <fa name="times-circle"></fa> Cancelar
+  </button>
+</div>

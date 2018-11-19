@@ -29,6 +29,8 @@ import { ComprasEquipoComponent } from './compras-equipo/compras-equipo.componen
 import { ComprasEquipoFormComponent } from './compras-equipo/compras-equipo-form/compras-equipo-form.component';
 import { AsignacionesEquipoComponent } from './asignaciones-equipo/asignaciones-equipo.component';
 import { AsignacionesEquipoFormComponent } from './asignaciones-equipo/asignaciones-equipo-form/asignaciones-equipo-form.component';
+import { ReportesComponent } from './reportes/reportes.component';
+import { ReportesFormComponent } from './reportes/reportes-form/reportes-form.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -65,7 +67,9 @@ const customNotifierOptions: NotifierOptions = {
     ComprasEquipoComponent,
     ComprasEquipoFormComponent,
     AsignacionesEquipoComponent,
-    AsignacionesEquipoFormComponent
+    AsignacionesEquipoFormComponent,
+    ReportesComponent,
+    ReportesFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -100,7 +104,10 @@ const customNotifierOptions: NotifierOptions = {
       { path: 'asignaciones-equipo', component: AsignacionesEquipoComponent },
       { path: 'asignaciones-equipo-form', component: AsignacionesEquipoFormComponent },
       { path: 'asignaciones-equipo-form/:id', component: AsignacionesEquipoFormComponent },
-      { path: 'asignaciones-equipo-form/:mode/:id', component: AsignacionesEquipoFormComponent }
+      { path: 'asignaciones-equipo-form/:mode/:id', component: AsignacionesEquipoFormComponent },
+      { path: 'reportes', component: ReportesComponent },
+      { path: 'reportes-form', component: ReportesFormComponent },
+      { path: 'reportes-form/:id', component: ReportesFormComponent },
     ])
   ],
   providers: [
