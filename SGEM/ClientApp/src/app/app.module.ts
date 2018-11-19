@@ -108,6 +108,7 @@ const customNotifierOptions: NotifierOptions = {
       { path: 'reportes', component: ReportesComponent },
       { path: 'reportes-form', component: ReportesFormComponent },
       { path: 'reportes-form/:id', component: ReportesFormComponent },
+      { path: '**', redirectTo: '/' }
     ])
   ],
   providers: [
