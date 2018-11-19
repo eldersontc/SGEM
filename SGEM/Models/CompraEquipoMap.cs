@@ -13,6 +13,7 @@ namespace SGEM.Models
             Id(x => x.Id);
             Map(x => x.FechaCreacion);
             Map(x => x.Comentario);
+            Map(x => x.Costo);
             References(x => x.UsuarioCreacion).Column("IdUsuarioCreacion");
             References(x => x.Almacen).Column("IdAlmacen");
         }

@@ -1,0 +1,79 @@
+<form class="form-horizontal" novalidate
+      (ngSubmit)="save()" [formGroup]="form">
+  <fieldset>
+    <div class="form-group" formGroupName="cargo">
+      <label class="col-md-2 control-label" for="cargoId">Cargo</label>
+      <div class="col-md-8">
+        <select id="cargoId" class="custom-select" formControlName="id">
+          <option *ngFor="let c of cargos" [ngValue]="c.id">{{c.nombre}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="nombresId">Nombres</label>
+      <div class="col-md-8">
+        <input class="form-control"
+               id="nombresId"
+               formControlName="nombres"
+               required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="apellidosId">Apellidos</label>
+      <div class="col-md-8">
+        <input class="form-control"
+               id="apellidosId"
+               formControlName="apellidos"
+               required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="tipoId">Tipo Documento</label>
+      <div class="col-md-8">
+        <select id="tipoId" class="custom-select" formControlName="tipoDocumento">
+          <option value="DNI">DNI</option>
+          <option value="RUC">RUC</option>
+          <option value="CARNET EXTRANJERÍA">CARNET EXTRANJERÍA</option>
+          <option value="OTROS">OTROS</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="numeroDocumentoId">Nro. Documento</label>
+      <div class="col-md-8">
+        <input class="form-control"
+               id="numeroDocumentoId"
+               formControlName="numeroDocumento"
+               required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="distritoId">Distrito</label>
+      <div class="col-md-8">
+        <select id="distritoId" class="custom-select" formControlName="distrito">
+          <option *ngFor="let d of distritos" [ngValue]="d">{{d}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="direccionId">Dirección</label>
+      <div class="col-md-8">
+        <input class="form-control"
+               id="direccionId"
+               formControlName="direccion"
+               required />
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary ml-3"
+              type="submit"
+              [disabled]="!form.valid">
+        <fa name="save"></fa> Guardar
+      </button>
+      <button class="btn btn-outline-secondary ml-2"
+              [routerLink]='["/personas"]'>
+        <fa name="times-circle"></fa> Cancelar
+      </button>
+    </div>
+  </fieldset>
+</form>

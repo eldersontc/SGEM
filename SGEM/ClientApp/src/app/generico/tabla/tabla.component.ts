@@ -9,6 +9,7 @@ export class TablaComponent implements OnInit {
 
   @Input() data: object[];
   @Input() columnas: string[];
+  @Input() estilo: string[] = [];
   @Input() atributos: string[][];
   @Input() showSeleccion: boolean = true;
 
@@ -25,5 +26,11 @@ export class TablaComponent implements OnInit {
 
   getValue(d, a) {
     return a.length == 3 ? d[a[2]] : d[a[2]][a[3]];
+  }
+
+  getClass(d) {
+    if (this.estilo.length > 0) {
+      return d[this.estilo[2]] == this.estilo[3] ? this.estilo[0] : this.estilo[1]
+    }
   }
 }

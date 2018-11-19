@@ -11,6 +11,7 @@ namespace SGEM.Models
         public Usuario UsuarioCreacion { get; set; }
         public Almacen Almacen { get; set; }
         public string Comentario { get; set; }
+        public decimal Costo { get; set; }
         public IList<CompraEquipoItem> Items { get; set; }
 
         public CompraEquipo()

@@ -18,9 +18,10 @@ export interface IFiltro {
 }
 
 export interface ILogin {
-  id: number;
-  nombre: string;
-  idPersona: number;
-  nombrePersona: string;
-  tipo: number;
+  i?: number;
+  u?: string;
+  pi?: number;
+  pn?: string;
+  ci?: number;
+  cn?: string;
 }

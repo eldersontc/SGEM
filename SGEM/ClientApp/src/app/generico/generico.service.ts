@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { NgbDatepickerI18n, NgbDateStruct, NgbDateParserFormatter, NgbDateAdapter } from "@ng-bootstrap/ng-bootstrap";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GenericoService {
 
   constructor() { }

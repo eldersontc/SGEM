@@ -1,5 +1,5 @@
 <div class="btn-group col-md-12  mb-2 justify-content-center">
-  <button type="button" class="btn btn-primary" *ngIf="!modeSearch" (click)="nuevo()">
+  <button type="button" class="btn btn-primary" *ngIf="!modeSearch && !hiddenNew" (click)="nuevo()">
     <fa name="plus-circle"></fa> Nuevo
   </button>
   <button type="button" class="btn btn-primary" *ngIf="model && !modeSearch && showReadOnly" (click)="ver()">

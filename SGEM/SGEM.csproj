@@ -27,11 +27,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\almacenes\almacen.ts" />
+    <None Remove="ClientApp\src\app\asignaciones-equipo\asignacion-equipo.ts" />
+    <None Remove="ClientApp\src\app\cargos\cargo.ts" />
+    <None Remove="ClientApp\src\app\compras-equipo\compra-equipo.ts" />
+    <None Remove="ClientApp\src\app\equipos\equipo.ts" />
     <None Remove="ClientApp\src\app\generico\generico.ts" />
+    <None Remove="ClientApp\src\app\personas\persona.ts" />
+    <None Remove="ClientApp\src\app\usuarios\usuario.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\almacenes\almacen.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\asignaciones-equipo\asignacion-equipo.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\cargos\cargo.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\compras-equipo\compra-equipo.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\equipos\equipo.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\generico\generico.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\personas\persona.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\usuarios\usuario.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

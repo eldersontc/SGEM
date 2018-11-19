@@ -11,14 +11,24 @@ import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { DatepickerI18n, DateAdapter, DateParserFormatter } from './generico/generico.service';
-import { UsuariosComponent } from './usuarios/usuarios.component';
 import { AccionesComponent } from './generico/acciones/acciones.component';
 import { FiltrosComponent } from './generico/filtros/filtros.component';
 import { TablaComponent } from './generico/tabla/tabla.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 import { UsuariosFormComponent } from './usuarios/usuarios-form/usuarios-form.component';
+import { PersonasComponent } from './personas/personas.component';
+import { CargosComponent } from './cargos/cargos.component';
+import { AlmacenesComponent } from './almacenes/almacenes.component';
+import { AlmacenesFormComponent } from './almacenes/almacenes-form/almacenes-form.component';
+import { CargosFormComponent } from './cargos/cargos-form/cargos-form.component';
+import { PersonasFormComponent } from './personas/personas-form/personas-form.component';
+import { EquiposComponent } from './equipos/equipos.component';
+import { EquiposFormComponent } from './equipos/equipos-form/equipos-form.component';
+import { ComprasEquipoComponent } from './compras-equipo/compras-equipo.component';
+import { ComprasEquipoFormComponent } from './compras-equipo/compras-equipo-form/compras-equipo-form.component';
+import { AsignacionesEquipoComponent } from './asignaciones-equipo/asignaciones-equipo.component';
+import { AsignacionesEquipoFormComponent } from './asignaciones-equipo/asignaciones-equipo-form/asignaciones-equipo-form.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -39,13 +49,23 @@ const customNotifierOptions: NotifierOptions = {
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
-    UsuariosComponent,
     AccionesComponent,
     FiltrosComponent,
     TablaComponent,
-    UsuariosFormComponent
+    UsuariosComponent,
+    UsuariosFormComponent,
+    PersonasComponent,
+    CargosComponent,
+    AlmacenesComponent,
+    AlmacenesFormComponent,
+    CargosFormComponent,
+    PersonasFormComponent,
+    EquiposComponent,
+    EquiposFormComponent,
+    ComprasEquipoComponent,
+    ComprasEquipoFormComponent,
+    AsignacionesEquipoComponent,
+    AsignacionesEquipoFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -59,13 +79,31 @@ const customNotifierOptions: NotifierOptions = {
     NgbPaginationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'usuarios', component: UsuariosComponent },
+      { path: 'usuarios-form', component: UsuariosFormComponent },
+      { path: 'usuarios-form/:id', component: UsuariosFormComponent },
+      { path: 'almacenes', component: AlmacenesComponent },
+      { path: 'almacenes-form', component: AlmacenesFormComponent },
+      { path: 'almacenes-form/:id', component: AlmacenesFormComponent },
+      { path: 'equipos', component: EquiposComponent },
+      { path: 'equipos-form', component: EquiposFormComponent },
+      { path: 'equipos-form/:id', component: EquiposFormComponent },
+      { path: 'cargos', component: CargosComponent },
+      { path: 'cargos-form', component: CargosFormComponent },
+      { path: 'cargos-form/:id', component: CargosFormComponent },
+      { path: 'personas', component: PersonasComponent },
+      { path: 'personas-form', component: PersonasFormComponent },
+      { path: 'personas-form/:id', component: PersonasFormComponent },
+      { path: 'compras-equipo', component: ComprasEquipoComponent },
+      { path: 'compras-equipo-form', component: ComprasEquipoFormComponent },
+      { path: 'compras-equipo-form/:id', component: ComprasEquipoFormComponent },
+      { path: 'asignaciones-equipo', component: AsignacionesEquipoComponent },
+      { path: 'asignaciones-equipo-form', component: AsignacionesEquipoFormComponent },
+      { path: 'asignaciones-equipo-form/:id', component: AsignacionesEquipoFormComponent },
+      { path: 'asignaciones-equipo-form/:mode/:id', component: AsignacionesEquipoFormComponent }
     ])
   ],
   providers: [
-    NgbModalConfig,
-    NgbModal,
     { provide: NgbDatepickerI18n, useClass: DatepickerI18n },
     { provide: NgbDateAdapter, useClass: DateAdapter },
     { provide: NgbDateParserFormatter, useClass: DateParserFormatter }

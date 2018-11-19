@@ -1,0 +1,124 @@
+<div *ngIf="elegirEquipo">
+  <app-equipos [extern]="[]" (select)="asignarEquipo($event)"></app-equipos>
+</div>
+<div [hidden]="elegirEquipo">
+  <form class="form-horizontal" novalidate
+        [formGroup]="form">
+    <div class="form-row">
+      <div class="col-6">
+        <div class="form-group">
+          <label class="col-md-12 control-label">Fecha</label>
+          <div class="col-md-12">
+            <input class="form-control" placeholder="dd/MM/yyyy"
+                   name="dp" formControlName="fechaCreacion" ngbDatepicker #d="ngbDatepicker" readonly>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label class="col-md-12 control-label">Almacen</label>
+          <div class="col-md-12">
+            <select class="custom-select" formControlName="almacen" required>
+              <option *ngFor="let a of almacenes" [ngValue]="a">{{a.nombre}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-12">
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="comentarioId">Comentario</label>
+          <div class="col-md-12">
+            <input class="form-control"
+                   id="comentarioId"
+                   type="text"
+                   formControlName="comentario"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="form-horizontal">
+    <div class="form-row">
+      <div class="col-12">
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="equipoId">Equipo</label>
+          <div class="col-md-12">
+            <div class="input-group">
+              <input class="form-control"
+                     id="equipoId"
+                     type="text"
+                     required
+                     [ngModel]="equipo.nombre"
+                     readonly />
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button" (click)="buscarEquipo()">
+                  <fa name="search"></fa>
+                </button>
+                <button class="btn btn-primary"
+                        type="button"
+                        (click)="addItem()"
+                        [disabled]="!equipo.nombre">
+                  <fa name="plus-circle"></fa> Agregar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-12">
+        <div class="col-md-12">
+          <table class="table table-bordered table-hover table-sm">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Equipo</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Costo</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of items">
+                <td>{{i.equipo.nombre}}</td>
+                <td>
+                  <input type="number"
+                         class="form-control"
+                         [(ngModel)]="i.cantidad" />
+                </td>
+                <td>
+                  <input type="number"
+                         class="form-control"
+                         [(ngModel)]="i.costo" />
+                </td>
+                <td class="text-center">
+                  <button type="button"
+                          class="btn btn-primary"
+                          (click)="deleteItem(i)">
+                    <fa name="trash"></fa>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary ml-3"
+            *ngIf="!modoLectura"
+            type="button"
+            (click)="save()"
+            [disabled]="!form.valid || items.length == 0">
+      <fa name="save"></fa> Guardar
+    </button>
+    <button class="btn btn-outline-secondary ml-2"
+            type="button"
+            [routerLink]='["/compras-equipo"]'>
+      <fa name="reply"></fa> Regresar
+    </button>
+  </div>
+</div>

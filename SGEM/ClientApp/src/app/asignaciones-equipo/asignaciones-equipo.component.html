@@ -1,0 +1,86 @@
+<div class="form-inline mb-3">
+  <div class="input-group col-md-4  mb-2 justify-content-center">
+    <select class="custom-select" [(ngModel)]="criterio">
+      <option [ngValue]="2" [hidden]="login.ci != 1">Empleado</option>
+      <option [ngValue]="3">Fecha Creación</option>
+    </select>
+    <input type="text" class="form-control" [(ngModel)]="busqueda" [hidden]="criterio == 3" />
+    <div class="input-group-append" [hidden]="criterio == 3">
+      <button class="btn btn-primary" type="button" (click)="buscar()">
+        <fa name="search"></fa>
+      </button>
+    </div>
+    <input class="form-control" [hidden]="criterio == 2"
+           placeholder="dd/MM/yyyy"
+           name="dp"
+           [(ngModel)]="busquedaFecha"
+           (dateSelect)="seleccionFecha()"
+           ngbDatepicker
+           #d="ngbDatepicker"
+           [readonly]="true" />
+    <div class="input-group-append" [hidden]="criterio == 2">
+      <button class="btn btn-primary" (click)="d.toggle()" type="button">
+        <fa name="calendar"></fa>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <app-filtros [filter]="filtros"
+                 [extern]="extern"
+                 (change)="gets()"></app-filtros>
+  </div>
+  <div class="col-md-3">
+    <app-acciones link="asignaciones-equipo-form"
+                  [model]="seleccion"
+                  [modeSearch]="false"
+                  (delete)="delete()"
+                  [showReadOnly]="true"
+                  [hiddenNew]="login.ci != 1"
+                  [show]="login.ci == 1"></app-acciones>
+  </div>
+  <div class="btn-group col-md-2 mb-2 justify-content-center"
+       *ngIf="seleccion && seleccion.empleado.id == login.pi">
+    <button type="button"
+            class="btn btn-primary"
+            *ngIf="seleccion.fechaAprobacion == null"
+            (click)="openAprobacion(aprobacion)">
+      <fa name="check"></fa> Aprobar
+    </button>
+  </div>
+</div>
+
+<app-tabla [columnas]="columnas"
+           [data]="data"
+           [atributos]="atributos"
+           [estilo]="['','approve','fechaAprobacion', null]"
+           (select)="seleccionar($event)"></app-tabla>
+
+<ngb-pagination class="d-flex justify-content-center"
+                [collectionSize]="totalRegistros"
+                [(page)]="pagina"
+                [maxSize]="5"
+                [rotate]="true"
+                [ellipses]="false"
+                [boundaryLinks]="true"
+                (pageChange)="pageChange()"></ngb-pagination>
+
+<ng-template #aprobacion let-c="close" let-d="dismiss">
+  <div class="modal-header bg-primary text-white">
+    <h5 class="modal-title" id="modal-basic-title">
+      <fa name="exclamation-triangle"></fa> Confirmación
+    </h5>
+    <button type="button" class="close" aria-label="Close" (click)="c('Cerrar')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-footer justify-content-center">
+    <button type="button" class="btn btn-primary" (click)="c('Aprobar')">
+      <fa name="check"></fa> Aprobar
+    </button>
+    <button type="button"
+            class="btn btn-outline-secondary"
+            (click)="c('Cancelar')">
+      <fa name="times-circle"></fa> Cancelar
+    </button>
+  </div>
+</ng-template>

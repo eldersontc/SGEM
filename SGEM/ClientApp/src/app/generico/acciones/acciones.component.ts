@@ -10,11 +10,11 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AccionesComponent implements OnInit {
 
   @Input() link: string;
-  @Input() class: string;
   @Input() model: object;
   @Input() modeSearch: boolean;
   @Input() show: boolean = true;
   @Input() showReadOnly: boolean = false;
+  @Input() hiddenNew: boolean = false;
 
   @Output() delete = new EventEmitter();
   @Output() select = new EventEmitter();
@@ -35,7 +35,7 @@ export class AccionesComponent implements OnInit {
   }
 
   editar() {
-    this.router.navigate(['/' + this.link + '/' + this.model['id' + this.class]]);
+    this.router.navigate(['/' + this.link + '/' + this.model['id']]);
   }
 
   open(confirm) {
@@ -52,6 +52,6 @@ export class AccionesComponent implements OnInit {
   }
 
   ver() {
-    this.router.navigate(['/' + this.link + '/~/' + this.model['id' + this.class]]);
+    this.router.navigate(['/' + this.link + '/~/' + this.model['id']]);
   }
 }
